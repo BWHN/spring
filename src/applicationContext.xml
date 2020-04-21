@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
-	<bean id="stu_1" class="org.hu.entity.Student">
+	<bean id="stu_2" class="org.hu.entity.Student">
 		<property name="no" value="s-002"></property>
 		<property name="name" value="lisi"></property>
 		<property name="age" value="24"></property>
 	</bean>
+
+	<bean id="stuSerImp" class="org.hu.service.StudentServiceImpl"/>
+
+	<bean id="logBef" class="org.hu.aop.LogBefore" />
+
+	<aop:config>
+		<aop:pointcut expression="execution(public void org.hu.service.StudentServiceImpl.addStudent(org.hu.entity.Student))" id="addstu"/>
+		<aop:advisor advice-ref="logBef" pointcut-ref="addstu"/>
+	</aop:config>
 
 </beans>

@@ -21,7 +21,7 @@ public class TestStudent {
 	
 	private static void createStudentByIOC() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		Student student = (Student)context.getBean("stu_1");
+		Student student = (Student)context.getBean("stu_2");
 		System.out.println(student);
 	}
 	
